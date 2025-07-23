@@ -12,31 +12,9 @@ const MapSection: React.FC = () => {
               Jelajahi Peta UMKM
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Temukan lokasi semua UMKM di Bugel, Salatiga dengan mudah melalui peta interaktif kami. 
+              Temukan lokasi UMKM di Bugel, Salatiga dengan mudah melalui peta interaktif kami. 
               Dapatkan petunjuk arah dan informasi detail setiap usaha.
             </p>
-            
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Lokasi Lengkap</h3>
-                  <p className="text-gray-600">Alamat detail dan koordinat GPS setiap UMKM</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <Navigation className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Navigasi Mudah</h3>
-                  <p className="text-gray-600">Petunjuk arah langsung ke Google Maps</p>
-                </div>
-              </div>
-            </div>
 
             <Link
               to="/peta"

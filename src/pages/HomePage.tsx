@@ -36,8 +36,8 @@ const HomePage: React.FC = () => {
       <HeroCarousel />
       <AboutSection />
       <FeaturedSection />
-      <MapSection />
       <DatabaseSection />
+      <MapSection />
       <Footer />
     </div>
   )
