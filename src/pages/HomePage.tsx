@@ -22,6 +22,14 @@ const HomePage: React.FC = () => {
     }
   }
 
+  // Handle hash navigation on page load
+  React.useEffect(() => {
+    const hash = window.location.hash.substring(1)
+    if (hash) {
+      setTimeout(() => scrollToSection(hash), 100)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-white">
       <Header onSectionClick={scrollToSection} />

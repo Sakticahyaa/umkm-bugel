@@ -21,8 +21,13 @@ const Header: React.FC<HeaderProps> = ({ onSectionClick }) => {
   ]
 
   const handleNavClick = (item: typeof navItems[0]) => {
-    if (item.id && onSectionClick && isHomePage) {
-      onSectionClick(item.id)
+    if (item.id) {
+      if (isHomePage && onSectionClick) {
+        onSectionClick(item.id)
+      } else {
+        // Navigate to home page with hash
+        window.location.href = `/#${item.id}`
+      }
     }
     setIsMenuOpen(false)
   }

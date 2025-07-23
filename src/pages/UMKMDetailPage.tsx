@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { MapPin, ExternalLink, ArrowLeft, Phone, Clock, Star } from 'lucide-react'
+import { MapPin, ExternalLink, ArrowLeft, Phone, X, Maximize2 } from 'lucide-react'
 import { useUMKM } from '../hooks/useUMKM'
 import { CATEGORY_LABELS } from '../types/umkm'
 import Header from '../components/Header'
@@ -9,8 +9,17 @@ import Footer from '../components/Footer'
 const UMKMDetailPage: React.FC = () => {
   const { name } = useParams<{ name: string }>()
   const { getUMKMByName, loading } = useUMKM()
+  const [isImageExpanded, setIsImageExpanded] = React.useState(false)
   
   const umkm = name ? getUMKMByName(name) : null
+
+  const openImageModal = () => {
+    setIsImageExpanded(true)
+  }
+
+  const closeImageModal = () => {
+    setIsImageExpanded(false)
+  }
 
   if (loading) {
     return (
@@ -86,11 +95,13 @@ const UMKMDetailPage: React.FC = () => {
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">Galeri Produk</h2>
                   <div className="grid grid-cols-1 gap-6">
-                    <img
-                      src={umkm.menu}
-                      alt={`${umkm.nama_umkm} produk`}
-                      className="w-full h-64 object-cover rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
-                    />
+                    <div className="relative group cursor-pointer" onClick={openImageModal}>
+                      <img
+                        src={umkm.menu}
+                        alt={`${umkm.nama_umkm} produk`}
+                        className="w-full h-auto object-contain rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
                 </div>
               )}
@@ -110,27 +121,7 @@ const UMKMDetailPage: React.FC = () => {
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Lokasi</p>
-                        <p className="font-semibold text-gray-900">Bugel, Salatiga</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                        <Clock className="w-6 h-6 text-blue-600" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500">Jam Operasional</p>
-                        <p className="font-semibold text-gray-900">08.00 - 20.00 WIB</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                        <Star className="w-6 h-6 text-green-600" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500">Rating</p>
-                        <p className="font-semibold text-gray-900">4.5/5 ⭐⭐⭐⭐⭐</p>
+                        <p className="font-semibold text-gray-900">{umkm.alamat_umkm || 'Bugel, Salatiga'}</p>
                       </div>
                     </div>
                   </div>
@@ -155,23 +146,22 @@ const UMKMDetailPage: React.FC = () => {
                   <p className="text-orange-100 mb-6">
                     Tertarik dengan produk atau layanan kami? Jangan ragu untuk menghubungi langsung!
                   </p>
-                  <div className="space-y-3">
-                    <a
-                      href="tel:+6281234567890"
-                      className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30 px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
-                    >
-                      <Phone className="w-5 h-5" />
-                      <span>Telepon</span>
-                    </a>
-                    <a
-                      href="https://wa.me/6281234567890"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
-                    >
-                      <Phone className="w-5 h-5" />
-                      <span>WhatsApp</span>
-                    </a>
+                  <div>
+                    {umkm.kontak ? (
+                      <a
+                        href={`https://wa.me/${umkm.kontak}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                      >
+                        <Phone className="w-5 h-5" />
+                        <span>WhatsApp</span>
+                      </a>
+                    ) : (
+                      <div className="w-full bg-gray-400 text-white px-6 py-3 rounded-full font-semibold text-center">
+                        Belum ada kontak
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -179,6 +169,26 @@ const UMKMDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {isImageExpanded && umkm.menu && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-14" onClick={closeImageModal}>
+          <div className="relative w-full h-full">
+            <button
+              onClick={closeImageModal}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <img
+              src={umkm.menu}
+              alt={`${umkm.nama_umkm} produk`}
+              className="w-full h-full object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

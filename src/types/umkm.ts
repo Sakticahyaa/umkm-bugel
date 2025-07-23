@@ -3,6 +3,8 @@ export interface UMKM {
   nama_umkm: string
   kategori_umkm: 'kuliner' | 'fashion' | 'kerajinan' | 'jasa' | 'agribisnis' | 'digital' | 'perdagangan'
   deskripsi_umkm: string
+  alamat_umkm?: string
+  kontak?: string
   link_gmaps?: string
   cover: string
   menu?: string

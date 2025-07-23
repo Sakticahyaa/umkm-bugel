@@ -32,18 +32,6 @@ const Footer: React.FC = () => {
             </a>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6 text-orange-400">Navigasi</h4>
-            <ul className="space-y-3">
-              <li><a href="#hero" className="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
-              <li><a href="#about" className="text-gray-300 hover:text-white transition-colors">Tentang</a></li>
-              <li><a href="#featured" className="text-gray-300 hover:text-white transition-colors">UMKM Unggulan</a></li>
-              <li><a href="/daftar-umkm" className="text-gray-300 hover:text-white transition-colors">Daftar UMKM</a></li>
-              <li><a href="/paket-wisata" className="text-gray-300 hover:text-white transition-colors">Paket Wisata</a></li>
-            </ul>
-          </div>
-
           {/* Contact */}
           <div>
             <h4 className="text-lg font-semibold mb-6 text-orange-400">Kontak</h4>
@@ -67,7 +55,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 mb-4 md:mb-0">
-              © 2025 Tim KKN Sadak Kinang. All rights reserved.
+              © 2024 UMKM Bugel. Dikembangkan dengan ❤️ oleh KKN Sadak Kinang.
             </p>
             <p className="text-gray-400">
               KKN-PPM UGM Sidorejo Salatiga
