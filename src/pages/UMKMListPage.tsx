@@ -13,13 +13,13 @@ const UMKMListPage: React.FC = () => {
 
   const categories = [
     { key: 'all', label: 'Semua Kategori' },
-    { key: 'kuliner', label: 'Kuliner' },
-    { key: 'fashion', label: 'Fashion' },
-    { key: 'kerajinan', label: 'Kerajinan' },
-    { key: 'jasa', label: 'Jasa' },
-    { key: 'agribisnis', label: 'Agribisnis' },
-    { key: 'digital', label: 'Digital' },
-    { key: 'perdagangan', label: 'Perdagangan' }
+    { key: 'Kuliner', label: 'Kuliner' },
+    { key: 'Fashion', label: 'Fashion' },
+    { key: 'Kerajinan', label: 'Kerajinan' },
+    { key: 'Jasa', label: 'Jasa' },
+    { key: 'Agribisnis', label: 'Agribisnis' },
+    { key: 'Digital', label: 'Digital' },
+    { key: 'Perdagangan', label: 'Perdagangan' }
   ]
 
   const filteredUMKM = umkm.filter((item) => {
@@ -70,7 +70,7 @@ const UMKMListPage: React.FC = () => {
         </div>
 
         {/* Filters */}
-        <div className="bg-white border-b border-gray-200 sticky top-20 z-40">
+        <div className="bg-white border-b border-gray-200 top-20 z-40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-wrap gap-3 justify-center">
               {categories.map((category) => (
