@@ -1,15 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useUMKM } from '../hooks/useUMKM'
 import { Link } from 'react-router-dom'
 import { CATEGORY_LABELS } from '../types/umkm'
 
+// Custom hook to get window size
+const useWindowSize = () => {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+
 const FeaturedSection: React.FC = () => {
   const { getFeaturedUMKM, loading } = useUMKM()
   const [currentSlide, setCurrentSlide] = useState(0)
   const featuredUMKM = getFeaturedUMKM()
+  const [width] = useWindowSize();
 
-  const itemsPerSlide = 3
+  const getItemsPerSlide = () => {
+    if (width >= 1024) { // lg
+      return 3;
+    }
+    if (width >= 768) { // md
+      return 2;
+    }
+    return 1; // otherwise
+  }
+
+  const itemsPerSlide = getItemsPerSlide();
   const totalSlides = Math.ceil(featuredUMKM.length / itemsPerSlide)
 
   useEffect(() => {
@@ -21,6 +46,11 @@ const FeaturedSection: React.FC = () => {
       return () => clearInterval(interval)
     }
   }, [totalSlides])
+
+  // Reset slide if itemsPerSlide changes to avoid out of bounds
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [itemsPerSlide]);
 
   const getCurrentItems = () => {
     const start = currentSlide * itemsPerSlide
