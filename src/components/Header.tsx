@@ -15,13 +15,15 @@ const Header: React.FC<HeaderProps> = ({ onSectionClick }) => {
     { name: 'Beranda', id: 'hero', href: '/' },
     { name: 'Tentang', id: 'about', href: '/' },
     { name: 'UMKM Unggulan', id: 'featured', href: '/' },
-    { name: 'Peta', id: 'map', href: '/' },
+    { name: 'Peta', id: 'map', href: '/', isExternal: true, externalUrl: 'https://aurora34415.github.io/UMKMBugel/#15/-7.3004/110.5014' },
     { name: 'Daftar UMKM', href: '/daftar-umkm' },
     { name: 'Paket Wisata', href: '/paket-wisata' }
   ]
 
   const handleNavClick = (item: typeof navItems[0]) => {
-    if (item.id) {
+    if (item.isExternal && item.externalUrl) {
+      window.open(item.externalUrl, '_blank', 'noopener,noreferrer')
+    } else if (item.id) {
       if (isHomePage && onSectionClick) {
         onSectionClick(item.id)
       } else {
@@ -54,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ onSectionClick }) => {
                 onClick={() => handleNavClick(item)}
                 className="text-gray-700 hover:text-orange-600 transition-colors duration-200 font-medium"
               >
-                {item.href && !item.id ? (
+                {item.href && !item.id && !item.isExternal ? (
                   <Link to={item.href}>{item.name}</Link>
                 ) : (
                   item.name
@@ -82,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ onSectionClick }) => {
                   onClick={() => handleNavClick(item)}
                   className="text-left text-gray-700 hover:text-orange-600 transition-colors duration-200 font-medium"
                 >
-                  {item.href && !item.id ? (
+                  {item.href && !item.id && !item.isExternal ? (
                     <Link to={item.href}>{item.name}</Link>
                   ) : (
                     item.name

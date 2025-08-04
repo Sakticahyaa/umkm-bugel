@@ -1,8 +1,11 @@
 import React from 'react'
 import { MapPin, Navigation } from 'lucide-react'
-import { Link } from 'react-router-dom'
 
 const MapSection: React.FC = () => {
+  const handleMapClick = () => {
+    window.open('https://aurora34415.github.io/UMKMBugel/#15/-7.3004/110.5014', '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <section id="map" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,13 +19,13 @@ const MapSection: React.FC = () => {
               Dapatkan petunjuk arah dan informasi detail setiap usaha.
             </p>
 
-            <Link
-              to="/peta"
+            <button
+              onClick={handleMapClick}
               className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Buka Peta
               <Navigation className="w-5 h-5 ml-2" />
-            </Link>
+            </button>
           </div>
 
           <div className="relative">
