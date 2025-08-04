@@ -34,7 +34,7 @@ const AboutSection: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Platform ini hadir untuk memperkenalkan dan mendukung Usaha Mikro, Kecil, dan Menengah (UMKM) 
-            yang ada di Bugel, Salatiga. Kami berkomitmen untuk mengangkat potensi ekonomi lokal dan 
+            yang ada di Kelurahan Bugel, Kecamatan Sidorejo, Kota Salatiga. Kami berkomitmen untuk mengangkat potensi ekonomi lokal dan 
             membantu masyarakat mengenal berbagai produk dan layanan berkualitas dari UMKM setempat.
           </p>
         </div>

@@ -36,11 +36,6 @@ const TourismPackagePage: React.FC = () => {
               Kami sedang menyiapkan paket wisata menarik untuk Anda jelajahi keindahan dan kekayaan 
               budaya Bugel, Salatiga. Pantau terus halaman ini untuk update terbaru!
             </p>
-            
-            <div className="inline-flex items-center bg-blue-50 px-6 py-3 rounded-full">
-              <Clock className="w-5 h-5 text-blue-600 mr-2" />
-              <span className="text-blue-800 font-semibold">Coming Soon - 2024</span>
-            </div>
           </div>
 
           {/* TODO: Add your tourism package content here */}
